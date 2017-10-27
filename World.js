@@ -60,12 +60,18 @@ class World {
                 );
         }
         
+        let explosionCollider = new CircleCollider(x, y, power);
+        
         this.tanks.forEach(tank=> {
-            let xDelta = tank.x - x;
+            /*let xDelta = tank.x - x;
             let yDelta = tank.y - y;
-            if(xDelta * xDelta + yDelta * yDelta < powerSquared) {
+            */
+            if(tank.collider.collidesWith(explosionCollider)) {
                 tank.damage(power * 2);
             }
+            /*if(xDelta * xDelta + yDelta * yDelta < powerSquared) {
+                tank.damage(power * 2);
+            }*/
         });
         
     }
