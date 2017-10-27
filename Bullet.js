@@ -17,7 +17,7 @@ class Bullet extends Entity {
     update() {
         this.x += this.velocityX * this.speed;
         this.y += this.velocityY * this.speed;
-        this.velocityY -= 0.005;
+        this.velocityY -= 0.015;
         
         if(this.y < this.world.getHeight(this.x)) {
             this.explode();
@@ -25,7 +25,7 @@ class Bullet extends Entity {
     }
     
     explode() {
-        this.world.explode(this.x, this.y, 10);
+        this.world.explode(this.x, this.y, 15);
         this.alive = false;
     }
 }

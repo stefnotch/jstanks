@@ -1,5 +1,5 @@
-/* global canvasTransformer Bullet Entity */
-class Tank extends Entity {
+/* global canvasTransformer Bullet PhysicsEntity RectangleCollider*/
+class Tank extends PhysicsEntity {
     constructor(x, y, color, world) {
         super(x, y, world);
         this.color = color;
@@ -9,6 +9,8 @@ class Tank extends Entity {
         this.turrentAngle = 0;
         this.bullets = [];
         this.health = 100;
+        
+        this.collider = new RectangleCollider(this.x - this.width/2, this.y, this.width, this.height);
     }
 
     draw(ctx) {
@@ -59,8 +61,10 @@ class Tank extends Entity {
     }
 
     shoot(strength) {
+        let xPos = this.x + Math.cos(this.turrentAngle) * 20;
+        let yPos = this.y + this.height + Math.sin(this.turrentAngle) * 20;
         this.bullets.push(
-                new Bullet(this.x, this.y + this.height, this.turrentAngle, strength, this.world)
+                new Bullet(xPos, yPos, this.turrentAngle, strength, this.world)
             );
     }
     
