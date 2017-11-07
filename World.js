@@ -12,7 +12,7 @@ class World {
     }
     
     getHeight(x) {
-        return this.terrain[Math.floor(x)];
+        return this.terrain[Math.floor(x)] || 0;
     }
     
     setHeight(x, y) {
@@ -48,19 +48,19 @@ class World {
         });
     }
 
-    explode(x, y, power) {
-        let start = x - power;
-        let end = x + power;
+    explode(position, power) {
+        let start = position.x - power;
+        let end = position.x + power;
         let powerSquared = power * power;
         for(let i = start; i < end; i++) {
-            let offset = (i - x);
+            let offset = (i - position.x);
             this.terrain[Math.floor(i)] = Math.max(
                     0, 
                     this.terrain[Math.floor(i)] - Math.sqrt(powerSquared - offset * offset)
                 );
         }
         
-        let explosionCollider = new CircleCollider(x, y, power);
+        let explosionCollider = new CircleCollider(position, power);
         
         this.tanks.forEach(tank=> {
             /*let xDelta = tank.x - x;

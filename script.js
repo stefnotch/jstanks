@@ -120,8 +120,7 @@ function createTanks(world, count) {
         .map((tank, i) => {
             let tankPos = (i + 1) * tankXDelta;
             let newTank = new Tank(
-                    tankPos,
-                    world.getHeight(tankPos),
+                    new Vector(tankPos, world.getHeight(tankPos)),
                     rainbow(count, i), 
                     world
                 );

@@ -1,10 +1,9 @@
 class PhysicsEntity extends Entity {
-    constructor(x, y, world) {
-        super(x, y, world);
+    constructor(position, world) {
+        super(position, world);
         
-        this._collider = new CircleCollider(x, y, NaN);
-        this.velocityX = 0;
-        this.velocityY = 0;
+        this._collider = new CircleCollider(position, NaN);
+        this.velocity = new Vector(0, 0);
     }
     
     get collider() {
