@@ -1,7 +1,7 @@
 class Entity {
-    constructor(x, y, world) {
-        this.x = x;
-        this.y = y;
+    constructor(position, world) {
+        this.position = position;
+        if(!(position instanceof Vector)) throw new Error("Not a vector");
         this.world = world;
         this.alive = true;
     }

@@ -1,14 +1,14 @@
 /*global Collider*/
 
 class RectangleCollider {
-    constructor(x, y, width, height) {
-        this.x = x;
-        this.y = y;
+    constructor(position, width, height) {
+        if(!this.position instanceof Vector) throw new Error("Not a vector");
+        this.position = position;
         this.width = width;
         this.height = height;
     }
-    
-     collidesWith(other) {
+
+    collidesWith(other) {
         return Collider.collides(this, other);
     }
 }
